@@ -1,0 +1,1 @@
+export { LoginFuncionarios as default } from './LoginFuncionarios'

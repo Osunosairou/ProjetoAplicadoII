@@ -1,0 +1,1 @@
+export { CadastroCurriculo as default } from './CadastroCurriculo'
