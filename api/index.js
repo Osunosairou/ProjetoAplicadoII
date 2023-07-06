@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
+const APPLICANTS_FILE = __dirname + '/output/applicants.json';
+const JOBS_FILE = __dirname + '/output/jobs.json';
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -11,27 +13,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // GET pra pegar o JSON dos aplicantes
 app.get('/aplicantes', (req, res) => {
-    res.status(200).sendFile(__dirname +  '/output/applicants.json')
+    res.status(200).sendFile(APPLICANTS_FILE)
 })
 
 // POST pra cadastrar aplicante no JSON
 app.post('/cadastrar/aplicante', (req, res) => {
-    // let jsonData = req.body;
-    // let jsonObj = JSON.parse(jsonData);
-    // let jsonContent = JSON.stringify(jsonObj);
-    // res.send(console.log(jsonContent));
+    fs.readFile(APPLICANTS_FILE, 'utf8', (_, data) => {
+        const newData = JSON.parse(data);
+        newData.push(req.body);
 
-    fs.writeFile(__dirname + '/output/applicants.json', req.body, 'utf8', function (err) {
-        if (err) {
-            console.log("An error occured while writing JSON Object to File.");
-            res.send(console.log(err)) ;
-        }else{
-            res.send(console.log("JSON file has been saved."));
-        }
-     
-        
+        fs.writeFile(APPLICANTS_FILE, JSON.stringify(newData), 'utf8', function (err) {
+            if (err) {
+                console.log("An error occured while writing JSON Object to File.");
+                res.send(err) ;
+            }else{
+                res.send("JSON file has been saved.");
+            }
+        });
     });
-    
 })
 
 // === Vagas ===
@@ -39,26 +38,23 @@ app.post('/cadastrar/aplicante', (req, res) => {
 // GET pra pegar o JSON das vagas
 
 app.get('/vagas', (req, res) => {
-    res.status(200).sendFile(__dirname +  '/output/jobs.json')
+    res.status(200).sendFile(JOBS_FILE)
 })
 
 app.post('/cadastrar/vaga', (req, res) => {
-    let jsonData = '{"persons":[{"name":"John","city":"New York"},{"name":"Phil","city":"Ohio"}]}';
-    let jsonObj = JSON.parse(jsonData);
-    let jsonContent = JSON.stringify(jsonObj);
+    fs.readFile(JOBS_FILE, 'utf8', (_, data) => {
+        const newData = JSON.parse(data);
+        newData.push(req.body);
 
-    fs.writeFile(__dirname + '/output/jobs.json', jsonContent, 'utf8', function (err) {
-        res.send('asdfsdgdfs');
-        if (err) {
-            console.log("An error occured while writing JSON Object to File.");
-            res.send(console.log(err)) ;
-        }else{
-            console.log("JSON file has been saved.");
-        }
-     
-        
+        fs.writeFile(JOBS_FILE, JSON.stringify(newData), 'utf8', function (err) {
+            if (err) {
+                console.log("An error occured while writing JSON Object to File.");
+                res.send(err) ;
+            }else{
+                res.send("JSON file has been saved.");
+            }
+        });
     });
-    
 })
 
 // === Login ===
@@ -67,10 +63,10 @@ app.post('/cadastrar/vaga', (req, res) => {
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'admin' && password === '123') {
         res.send('Login as admin successful');
     }
-    else if(username === 'user' && password === 'user'){
+    else if(username === 'user' && password === '123'){
         res.send('Login as user successful');
     }
     else {
@@ -78,9 +74,8 @@ app.post('/login', (req, res) => {
     }
 })
     
-    
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
+    console.log(`Listening on port ${PORT}`)
 })
 
 
