@@ -2,10 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const fs = require('fs');
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 const APPLICANTS_FILE = __dirname + '/output/applicants.json';
 const JOBS_FILE = __dirname + '/output/jobs.json';
+const cors = require('cors')
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
 
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -68,7 +75,7 @@ app.post('/login', (req, res) => {
     } else if(username === 'user' && password === '123'){
         res.send('Login as user successful');
     } else {
-        res.send('Login failed');
+        res.status(400).send('Login failed');
     }
 })
     
