@@ -65,11 +65,9 @@ app.post('/login', (req, res) => {
     let password = req.body.password;
     if (username === 'admin' && password === '123') {
         res.send('Login as admin successful');
-    }
-    else if(username === 'user' && password === '123'){
+    } else if(username === 'user' && password === '123'){
         res.send('Login as user successful');
-    }
-    else {
+    } else {
         res.send('Login failed');
     }
 })
