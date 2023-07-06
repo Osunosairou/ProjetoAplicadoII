@@ -2,8 +2,11 @@ import { ChangeEventHandler, useState } from 'react';
 import { LabeledInput } from '../../components'
 import * as S from './CadastroCurriculo.styles'
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 export const CadastroCurriculo = () => {
+  const location = useLocation();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -15,7 +18,7 @@ export const CadastroCurriculo = () => {
   }
 
   const handleSubmit = () => {
-    axios.post('http://localhost:4000/cadastrar/aplicante', { name, email, dateOfBirth, resume })
+    axios.post('http://localhost:4000/cadastrar/aplicante', { name, email, dateOfBirth, resume, job: location.state.id })
     .then((res) => {
       console.log(res.status);
       if (res.status === 200) {
