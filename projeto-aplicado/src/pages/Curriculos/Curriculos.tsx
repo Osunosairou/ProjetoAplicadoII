@@ -36,7 +36,12 @@ export const Curriculos = () => {
       .then((response) => {
         const newResumes = res.data;
         newResumes.forEach((item: Record<string, string>) => {
-          item.job = (response.data.find((job: Record<string, string>) => job.id === item.job)).title;
+          const job = response.data.find((job: Record<string, string>) => job.id === item.job);
+          if(job) {
+            item.job = job.title;
+          } else {
+            item.job = '*Vaga inexistente'
+          }
         });
         setResumesFiltered(newResumes);
         return setResumes(newResumes);

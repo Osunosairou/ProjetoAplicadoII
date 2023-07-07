@@ -14,6 +14,11 @@ export const LoginFuncionarios = () => {
     .then((res) => {
       console.log(res.status);
       if (res.status === 200) {
+        if (res.data === 'Login as admin successful') {
+          window.localStorage.setItem('role', 'admin');
+        } else {
+          window.localStorage.setItem('role', 'user');
+        }
         navigate('/curriculos');
       }
       return;

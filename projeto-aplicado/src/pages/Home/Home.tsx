@@ -10,10 +10,19 @@ export const Home = () => {
   const [availableJobsFiltered, setAvailableJobsFiltered] = useState<AvailableJobsType>(availableJobs);
   const [search, setSearch] = useState<string>('');
   const navigate = useNavigate();
+  const role = window.localStorage.getItem('role');
 
   const navigateTo = (id: string) => {
     navigate('/cadastro-curriculo', { state: { id } });
   }
+
+  const removeJob = useCallback((id: string) => {
+    axios.post('http://localhost:4000/remover/vagas', { id }, { headers: { Authorization: role } })
+    .then(() => {
+      alert("Vaga removida!");
+    })
+    .catch((err) => alert(err))
+  }, [role]);
 
   const handleSearch: ChangeEventHandler<HTMLInputElement> = useCallback((event) => {
     const { value } = event.target;
@@ -48,6 +57,7 @@ export const Home = () => {
                   <S.Job key={item.id} onClick={() => navigateTo(item.id)} type="button">
                     <S.JobTitle>{item.title}</S.JobTitle>
                     <S.JobDescription>{item.description}</S.JobDescription>
+                    {role === 'admin' ? <button type="button" onClick={() => removeJob(item.id)}>Remover</button> : null}
                   </S.Job>
                 ))}
             </S.List>
