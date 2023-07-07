@@ -81,6 +81,28 @@ app.post('/login', (req, res) => {
         res.status(400).send('Login failed');
     }
 })
+
+app.post('/remover/vagas', (req, res) => {
+    if(req.headers.authorization === 'admin') {
+        const { id } = req.body;
+    
+        fs.readFile(JOBS_FILE, 'utf8', (_, data) => {
+            let newData = JSON.parse(data);
+            newData = newData.filter((item) => item.id !== id);
+    
+            fs.writeFile(JOBS_FILE, JSON.stringify(newData), 'utf8', function (err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    res.send(err) ;
+                }else{
+                    res.send("JSON file has been saved.");
+                }
+            });
+        });
+    } else {
+        res.status(405).send('Not allowed!');
+    }
+})
     
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
