@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const crypto = require('crypto')
 const fs = require('fs');
 const app = express();
 const PORT = 4000;
@@ -26,6 +27,7 @@ app.get('/aplicantes', (req, res) => {
 // POST pra cadastrar aplicante no JSON
 app.post('/cadastrar/aplicante', (req, res) => {
     fs.readFile(APPLICANTS_FILE, 'utf8', (_, data) => {
+        req.body.id = crypto.randomUUID();
         const newData = JSON.parse(data);
         newData.push(req.body);
 
@@ -50,6 +52,7 @@ app.get('/vagas', (req, res) => {
 
 app.post('/cadastrar/vaga', (req, res) => {
     fs.readFile(JOBS_FILE, 'utf8', (_, data) => {
+        req.body.id = crypto.randomUUID();
         const newData = JSON.parse(data);
         newData.push(req.body);
 

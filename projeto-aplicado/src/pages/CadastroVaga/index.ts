@@ -1,0 +1,1 @@
+export { CadastroVaga as default } from './CadastroVaga'

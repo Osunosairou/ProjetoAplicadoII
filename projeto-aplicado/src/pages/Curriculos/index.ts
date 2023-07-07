@@ -1,0 +1,1 @@
+export { Curriculos as default } from './Curriculos'

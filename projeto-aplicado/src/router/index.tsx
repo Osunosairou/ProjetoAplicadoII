@@ -4,6 +4,8 @@ import { Navigate, Outlet, ScrollRestoration, createBrowserRouter } from 'react-
 const Home = lazy(() => import('../pages/Home'));
 const CadastroCurriculo = lazy(() => import('../pages/CadastroCurriculo'));
 const LoginFuncionarios = lazy(() => import('../pages/LoginFuncionarios'));
+const CadastroVaga = lazy(() => import('../pages/CadastroVaga'));
+const Curriculos = lazy(() => import('../pages/Curriculos'));
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
       {
         path: '/cadastro-curriculo',
         element: <CadastroCurriculo />,
+      },
+      {
+        path: '/cadastro-vaga',
+        element: <CadastroVaga />,
+      },
+      {
+        path: '/curriculos',
+        element: <Curriculos />,
       },
       {
         path: '/login',

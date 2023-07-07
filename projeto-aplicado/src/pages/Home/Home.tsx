@@ -28,7 +28,7 @@ export const Home = () => {
             <S.List>
                 {availableJobs.map((item) => (
                   <S.Job key={item.id} onClick={() => navigateTo(item.id)} type="button">
-                    <S.JobTitle>{item.name}</S.JobTitle>
+                    <S.JobTitle>{item.title}</S.JobTitle>
                     <S.JobDescription>{item.description}</S.JobDescription>
                   </S.Job>
                 ))}
