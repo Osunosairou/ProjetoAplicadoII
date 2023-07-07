@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { LabeledInput } from '../../components';
 import * as S from './LoginFuncionarios.styles'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginFuncionarios = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,11 +14,11 @@ export const LoginFuncionarios = () => {
     .then((res) => {
       console.log(res.status);
       if (res.status === 200) {
-        // navegar pra outra pagina
+        navigate('/curriculos');
       }
       return;
     })
-    .catch((err) => console.log(err))
+    .catch(() => alert('Erro!'))
   }
 
   return (

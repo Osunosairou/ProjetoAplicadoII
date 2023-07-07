@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
         element: <Curriculos />,
       },
       {
+        path: '/curriculo',
+        element: <Navigate to='/curriculos' />,
+      },
+      {
         path: '/login',
         element: <LoginFuncionarios />,
       },

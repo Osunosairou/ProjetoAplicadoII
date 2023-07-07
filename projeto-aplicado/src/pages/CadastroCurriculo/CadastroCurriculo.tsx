@@ -18,15 +18,19 @@ export const CadastroCurriculo = () => {
   }
 
   const handleSubmit = () => {
-    axios.post('http://localhost:4000/cadastrar/aplicante', { name, email, dateOfBirth, resume, job: location.state.id })
-    .then((res) => {
-      console.log(res.status);
-      if (res.status === 200) {
-        return alert('Seu currículo foi cadastrado com sucesso!')
-      }
-      return alert('Ocorreu um erro inesperado.\n Tente novamente!');
-    })
-    .catch((err) => console.log(err))
+    if (name.length > 0 && email.length > 0 && dateOfBirth.toString().length > 0 && resume.length > 0)  {
+      axios.post('http://localhost:4000/cadastrar/aplicante', { name, email, dateOfBirth, resume, job: location.state.id })
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 200) {
+          return alert('Seu currículo foi cadastrado com sucesso!')
+        }
+        return alert('Ocorreu um erro inesperado.\n Tente novamente!');
+      })
+      .catch((err) => console.log(err))
+    } else {
+      alert('Preencha todos os dados!')
+    }
   }
 
   return (

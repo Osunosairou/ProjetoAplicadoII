@@ -67,6 +67,41 @@ export const JobDescription = styled.p`
   width: 100%;
 `;
 
+export const Modal = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .5);
+
+  &[data-open='true'] {
+    display: flex;
+  }
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 40%;
+  height: 40%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 50px;
+
+  overflow-y: auto;
+`;
+
+export const CloseModal = styled.button`
+  margin-left: 20px;
+`;
+
 export const ErrorContainer = styled.div`
   display: flex;
   flex-direction: column;
