@@ -44,6 +44,7 @@ export const Home = () => {
   }, [])
 
   return (
+    //<S.Viewport name="viewport" content="width=device-width, initial-scale=1.0">
     <S.Container>
       <S.SearchContainer>
         &#128269;
@@ -69,5 +70,6 @@ export const Home = () => {
           </S.ErrorContainer>
         }
     </S.Container>
+    
   )
 }

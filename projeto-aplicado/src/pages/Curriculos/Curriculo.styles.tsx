@@ -6,20 +6,25 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  width: 100vw;
+  width: 99,5vw;
   min-height: 100vh;
   padding: 20px 0;
 
   overflow-y: auto;
+
+  background-color: gray;
 `;
 
 export const Title = styled.h1`
   text-align: center;
+  color: white;
 `;
 
 export const SearchContainer = styled.div`
   border-radius: 8px;
   border: 2px solid; 
+  background-color: white;
+  padding-left: 6px;
 `;
 
 export const Search = styled.input`
@@ -51,6 +56,12 @@ export const Job = styled.button`
   border-radius: 8px;
   padding: 30px 50px;
   
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+
+  color: #424242;
+  
   p {
     margin: 0;
   }
@@ -64,6 +75,12 @@ export const JobTitle = styled.p`
 export const JobDescription = styled.p`
   word-wrap: break-word;
   text-align: justify;
+  width: 100%;
+`;
+
+export const JobDescriptionModal = styled.p`
+  word-wrap: break-word;
+  text-align: start;
   width: 100%;
 `;
 
@@ -89,17 +106,26 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 40%;
+  width: 60%;
   height: 40%;
-  background-color: #fff;
+  background-color: lightgray;
   border-radius: 8px;
-  padding: 50px;
+  padding: 25px;
+  color: #424242;
+
+  
 
   overflow-y: auto;
+
+  @media (min-width: 600px) {
+    width: 40%;
+    height: 40%;
+    padding: 50px;
+  }
 `;
 
 export const CloseModal = styled.button`
-  margin-left: 20px;
+ 
 `;
 
 export const ErrorContainer = styled.div`

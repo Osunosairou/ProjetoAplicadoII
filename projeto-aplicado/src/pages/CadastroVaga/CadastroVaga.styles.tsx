@@ -9,13 +9,32 @@ export const Container = styled.div`
 
   width: 100vw;
   height: 100vh;
+
+  background-color: gray;
+  
 `;
 
 export const Title = styled.h1`
-  font-size: 80px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  
+
+  @media (min-width: 600px) {
+    font-size: 60px;
+    color: white;
+  }
 `;
 
 export const DescriptionTitle = styled.h1`
+  font-size: 30px;
+  text-align: center;
+  color: white;
+
+  @media (min-width: 600px) {
+    font-size: 50px;
+    color: white;
+  }
 `;
 
 export const Description = styled.textarea`
@@ -24,9 +43,12 @@ export const Description = styled.textarea`
   
   text-align: justify;
   border: 2px solid;
-  border-color: gray;
+  border-color: black;
+  border-style: solid;
+  border-width: thin;
   border-radius: 5px;
-  
+  background-color: lightgray;
+
   padding: 20px 30px;
   font-size: 16px;
 `;
@@ -39,9 +61,12 @@ export const Submit = styled.button`
   
   text-align: center;
   border: 2px solid;
-  border-color: gray;
+  border-color: black;
+  border-style: solid;
+  border-width: thin;
   border-radius: 5px;
   font-size: 16px;
+  background-color: white;
 
   cursor: pointer;
 `;

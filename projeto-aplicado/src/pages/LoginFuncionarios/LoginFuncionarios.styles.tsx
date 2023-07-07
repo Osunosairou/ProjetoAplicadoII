@@ -8,9 +8,12 @@ export const Container = styled.div`
 
   width: 100vw;
   height: 100vh;
+
+  background-color: gray;
 `;
 
 export const Title = styled.h1`
+  color: white;
 `;
 
 export const LoginFields = styled.div`
@@ -28,9 +31,12 @@ export const Submit = styled.button`
   
   text-align: center;
   border: 2px solid;
-  border-color: gray;
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
   border-radius: 5px;
   font-size: 14px;
+  background-color: white;
 
   cursor: pointer;
 `;

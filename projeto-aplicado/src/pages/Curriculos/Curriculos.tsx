@@ -68,14 +68,12 @@ export const Curriculos = () => {
             </S.List>
             <S.Modal data-open={isModalOpen}>
               <S.ModalContent>
-                <S.JobTitle>
-                  {resumes[selectedResumeIndex].name}
-                  <S.CloseModal type="button" onClick={() => setIsModalOpen(false)}>Fechar &#10005;</S.CloseModal>
-                </S.JobTitle>
-                <S.JobDescription>Vaga: {resumes[selectedResumeIndex].job}</S.JobDescription>
-                <S.JobDescription>Email: {resumes[selectedResumeIndex].email}</S.JobDescription>
-                <S.JobDescription>Data de nascimento: {new Date(resumes[selectedResumeIndex].dateOfBirth).toLocaleDateString('pt-Br')}</S.JobDescription>
-                <S.JobDescription>{resumes[selectedResumeIndex].resume}</S.JobDescription>
+                <S.JobTitle>{resumes[selectedResumeIndex].name}</S.JobTitle>
+                <S.CloseModal type="button" onClick={() => setIsModalOpen(false)}>Fechar</S.CloseModal>
+                <S.JobDescriptionModal>Vaga: {resumes[selectedResumeIndex].job}</S.JobDescriptionModal>
+                <S.JobDescriptionModal>Email: {resumes[selectedResumeIndex].email}</S.JobDescriptionModal>
+                <S.JobDescriptionModal>Data de nascimento: {new Date(resumes[selectedResumeIndex].dateOfBirth).toLocaleDateString('pt-Br')}</S.JobDescriptionModal>
+                <S.JobDescriptionModal>{resumes[selectedResumeIndex].resume}</S.JobDescriptionModal>
               </S.ModalContent>
             </S.Modal>
           </>
